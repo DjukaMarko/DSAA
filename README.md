@@ -11,6 +11,12 @@ Update: 21.12.2020
 
 Update: 25.12.2020
  - added Binary Search Tree
+ 
+Update: 26.12.2020
+ - added Binary Tree
+
+Update: 28.12.2020
+ - added AVL Tree (insertion)
 
 Feel free to contribute!
  -Djuka
