@@ -18,5 +18,8 @@ Update: 26.12.2020
 Update: 28.12.2020
  - added AVL Tree (insertion)
 
+Update 08.01.2021
+ - added AVL Tree (deletion)
+
 Feel free to contribute!
  -Djuka
