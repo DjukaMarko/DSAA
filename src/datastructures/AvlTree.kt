@@ -55,26 +55,34 @@ class AvlTree {
         }
 
         root.height = 1 + max(height(root.left), height(root.right))
-        val balance: Int = getBalance(root)
 
+        checkAndRotate(root, key)
+
+        return root
+
+    }
+
+    private fun checkAndRotate(root: NodeB, key: Int): NodeB? {
+        val balance: Int = getBalance(root)
+        var rotatedNode: NodeB? = null
         when {
             balance > 1 && key < root.left!!.key -> {
-                return rotateRight(root)
+                rotatedNode = rotateRight(root)
             }
             balance < -1 && key > root.right!!.key -> {
-                return rotateLeft(root)
+                rotatedNode = rotateLeft(root)
             }
             balance > 1 && key > root.left!!.key -> {
                 root.left = rotateLeft(root.left!!)
-                return rotateRight(root)
+                rotatedNode = rotateRight(root)
 
             }
             balance < -1 && key < root.right!!.key -> {
                 root.right = rotateRight(root.right!!)
-                return rotateLeft(root)
+                rotatedNode = rotateLeft(root)
             }
         }
-        return root
+        return rotatedNode
 
     }
 
@@ -143,6 +151,10 @@ class AvlTree {
                 }
             }
         }
+        if (root != null) {
+            checkAndRotate(root, key)
+        }
+
         return root
 
     }
@@ -163,6 +175,10 @@ fun main() {
     b.insert(3)
     b.insert(6)
     b.insert(7)
+    b.insert(3)
+    b.insert(10)
+    b.delete(10)
+    b.delete(5)
     println()
     b.inOrder()
     println(b.isBalanced())
