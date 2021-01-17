@@ -3,7 +3,6 @@ package datastructures
 import LinkedList
 import Node
 
-
 class HashMap(var size: Int) {
    var arr: Array<LinkedList?> = arrayOfNulls(size)
 
@@ -22,16 +21,23 @@ class HashMap(var size: Int) {
     }
 
     fun add(key: String, value: Int?): Int {
-        val index: Int = hashFunction(key) % arr.size
-        var ll: LinkedList? = arr[index]
+        var ll: LinkedList? = arr[hashFunction(key) % arr.size]
         ll?.addAtHead(key, value)
-        return index
+        return hashFunction(key) % arr.size
     }
 
+
     infix fun get(key: String): Int? {
-        val index: Int = hashFunction(key) % arr.size
-        var ll: LinkedList? = arr[index]
-        var head: Node? = ll?.getHead()
+        var ll: LinkedList? = arr[hashFunction(key) % arr.size]
+        var value: Int? = null
+        if (ll != null) {
+            value = getValue(key, ll)
+        }
+        return value
+    }
+
+    private fun getValue(key: String, ll: LinkedList): Int? {
+        var head: Node? = ll.getHead()
         while(head?.key != key) {
             head = head?.next
         }
@@ -42,14 +48,8 @@ class HashMap(var size: Int) {
 
 
     infix fun del(key: String) {
-        val index: Int = hashFunction(key) % arr.size
-        var ll: LinkedList? = arr[index]
-        var head: Node? = ll?.getHead()
-        while(head?.key != key) {
-            head = head?.next
-        }
-        ll?.removeNode(head.value)
-
+        var ll: LinkedList? = arr[hashFunction(key) % arr.size]
+        ll?.removeNode(getValue(key, ll))
     }
 
 }
