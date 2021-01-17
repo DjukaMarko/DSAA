@@ -3,10 +3,11 @@
 
 /* This class represents a node which has 3 properties. The value itself, a pointer to the next and to the previous node.
 *  @params element which represents a value for our node */
-class Node(element: Any?) {
-    var value: Any? = element
+class Node(element: Int?) {
+    var value: Int? = element
     var next: Node? = null
     var previous: Node? = null
+    var key: String? = null /* This property is used for HASHMAP and you do not need to declare values on it everytime you create new nodes */
 }
 
 
@@ -34,9 +35,21 @@ class LinkedList {
         }
     }
 
+    fun addAtHead(key: String, value: Int?) {
+        val node = Node(value)
+        node.key = key
+        node.next = head
+        head?.previous = node
+        head = node
+
+    }
+
+    fun getHead(): Node? = head
+
+
     /* Method for adding nodes to the linked list
     *  @params element; for values which are passed to the Node class */
-    fun addNode(element: Any?) {
+    fun addNode(element: Int?) {
         val node = findLast()
         val newNode = Node(element)
 
@@ -81,8 +94,24 @@ class LinkedList {
 
     }
 
+    fun traverseListPrint() {
+        var fNode = head
+
+        if (fNode?.next == null) {
+            println(fNode?.value)
+        } else {
+
+            while (fNode?.next != null) {
+                print("${fNode?.value} -> ")
+                fNode = fNode?.next
+            }
+            print(fNode?.value)
+            println()
+        }
+    }
+
     /* For the given value traverse through the list and find the node with that value */
-    fun removeNode(value: Any?) {
+    fun removeNode(value: Int?) {
         var headNode = head
         var prev = head
         var next = headNode

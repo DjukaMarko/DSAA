@@ -27,5 +27,8 @@ Update: 11.01.2021
 Update: 12.01.2021
  - added Heap (completed)
 
+Update: 17.01.2021
+ - added HashMap
+
 Feel free to contribute!
  -Djuka
