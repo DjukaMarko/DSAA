@@ -7,14 +7,14 @@ class NodeB(element: Int) {
 
 class BinarySearchTree {
 
-    var root: NodeB? = null
+    private var root: NodeB? = null
 
     fun insert(key: Int) {
         root = insertNode(root, key)
     }
 
 
-    private fun insertNode(_root: NodeB?, key: Int): NodeB? {
+    private fun insertNode(_root: NodeB?, key: Int): NodeB {
         var root: NodeB? = _root
         if (root == null) {
             root = NodeB(key)
@@ -64,7 +64,7 @@ class BinarySearchTree {
                         root = root.left
                     }
                     else -> {
-                        var temp: NodeB = findMin(root.right!!)
+                        val temp: NodeB = findMin(root.right!!)
                         root.key = temp.key
                         root.right = deleteRec(root.right, root.key)
 
@@ -86,7 +86,7 @@ class BinarySearchTree {
 }
 
 fun main() {
-    var b = BinarySearchTree()
+    val b = BinarySearchTree()
     b.insert(5)
     b.insert(4)
     b.insert(3)

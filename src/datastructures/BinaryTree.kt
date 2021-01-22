@@ -19,7 +19,7 @@ class BinaryTree {
         private fun inOrderRec(root: BNode?) {
             if(root != null) {
                 inOrderRec(root.left)
-                println(root?.key)
+                println(root.key)
                 inOrderRec(root.right)
             }
         }

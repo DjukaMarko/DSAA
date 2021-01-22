@@ -1,9 +1,8 @@
 package datastructures
 
-import LinkedList
 import Stack
 
-class Graph(var size: Int) {
+class Graph(size: Int) {
     private var arr: Array<LinkedList?> = arrayOfNulls(size)
     init {
         for(i in 0 until size) {
@@ -24,7 +23,7 @@ class Graph(var size: Int) {
         }
     }
 
-    fun getAdjacent(value: Int): MutableList<Int> {
+    private fun getAdjacent(value: Int): MutableList<Int> {
         val rarr: MutableList<Int> = mutableListOf()
         for(i in arr[value]!!.iterateList()) {
             rarr.add(i)
@@ -33,12 +32,12 @@ class Graph(var size: Int) {
         return rarr
     }
 
-    fun depthFirst() {
-        var l: MutableList<Int> = mutableListOf()
-        var stack: Stack<Int> = Stack()
-        stack.push(0)
+    fun depthFirst(value: Int) {
+        val l: MutableList<Int> = mutableListOf()
+        val stack: Stack<Int> = Stack()
+        stack.push(value)
         while(!stack.isEmpty()) {
-            var check = stack.pop()
+            val check = stack.pop()
             if(!l.contains(check)) {
                 l.add(check)
                 println(check)
@@ -53,10 +52,15 @@ class Graph(var size: Int) {
 }
 
 fun main() {
-    var graph = Graph(5)
-    graph.addEdge(0, 3)
-    graph.addEdge(0, 5)
+    val graph = Graph(10)
+    graph.addEdge(1, 2)
+    graph.addEdge(1, 3)
+    graph.addEdge(2, 1)
     graph.addEdge(2, 4)
+    graph.addEdge(3, 1)
+    graph.addEdge(3, 4)
+    graph.addEdge(4, 2)
+    graph.addEdge(4, 3)
     graph.printGraph()
-    graph.depthFirst()
+    graph.depthFirst(4)
 }

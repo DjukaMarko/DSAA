@@ -1,4 +1,4 @@
-
+package datastructures
 /* Linked List by Marko. Feel free to contribute and help me to become a better coder. Happy coding. */
 
 /* This class represents a node which has 3 properties. The value itself, a pointer to the next and to the previous node.
@@ -13,7 +13,7 @@ class Node(element: Int) {
 
 
 class LinkedList {
-    // Head Node
+    // Head datastructures.Node
     private var head: Node? = null
     var size: Int = 0
 
@@ -50,12 +50,12 @@ class LinkedList {
 
 
     /* Method for adding nodes to the linked list
-    *  @params element; for values which are passed to the Node class */
+    *  @params element; for values which are passed to the datastructures.Node class */
     fun addNode(element: Int) {
         val node = findLast()
         val newNode = Node(element)
 
-        /* If the head is null add the Node and point the head to it
+        /* If the head is null add the datastructures.Node and point the head to it
         *  otherwise add it to the end of the list */
         if (head == null) {
             head = newNode
@@ -71,7 +71,7 @@ class LinkedList {
 
     fun get(index: Int): Int {
         var node: Node? = head
-        var retValue: Int
+        val retValue: Int
         if(index == 0) {
             retValue = head!!.value
         } else {
@@ -113,8 +113,8 @@ class LinkedList {
     }
     fun iterateList(): MutableList<Int> {
         var node: Node? = head
-        var arr: MutableList<Int> = mutableListOf()
-        while(node?.next != null) {
+        val arr: MutableList<Int> = mutableListOf()
+        while(node?.value != null) {
             arr.add(node.value)
             node = node.next
         }

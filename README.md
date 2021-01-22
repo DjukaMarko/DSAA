@@ -6,7 +6,7 @@ Update : 19.12.2020
 Update: 21.12.2020
  - added Stack
  - added Queue
- - added Implementations package
+ - added implementations package
  - added BalancedBrackets
 
 Update: 25.12.2020

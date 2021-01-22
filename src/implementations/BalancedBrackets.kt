@@ -1,4 +1,4 @@
-package Implementations
+package implementations
 
 import Stack
 import kotlin.properties.Delegates
@@ -16,8 +16,8 @@ class BalancedBrackets: Stack<Any>() {
             }
 
             if (value[i] in "}])") {
-                var checkChar = if (!stack.isEmpty()) stack.pop() else ""
-                var rValue = value[i]
+                val checkChar = if (!stack.isEmpty()) stack.pop() else ""
+                val rValue = value[i]
                 check = rValue == dict[checkChar]
 
                 if(!check) {
@@ -35,6 +35,6 @@ class BalancedBrackets: Stack<Any>() {
 }
 
 fun main() {
-    var ss = BalancedBrackets()
+    val ss = BalancedBrackets()
     println(ss.isBalanced("{}[[(())]]{}"))
 }
