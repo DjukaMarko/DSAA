@@ -24,8 +24,8 @@ class Graph(var size: Int) {
         }
     }
 
-    private fun getAdjacent(value: Int): MutableList<Int> {
-        var rarr: MutableList<Int> = mutableListOf()
+    fun getAdjacent(value: Int): MutableList<Int> {
+        val rarr: MutableList<Int> = mutableListOf()
         for(i in arr[value]!!.iterateList()) {
             rarr.add(i)
         }
@@ -36,7 +36,7 @@ class Graph(var size: Int) {
     fun depthFirst() {
         var l: MutableList<Int> = mutableListOf()
         var stack: Stack<Int> = Stack()
-        stack.push(arr[0]!!.get(0))
+        stack.push(0)
         while(!stack.isEmpty()) {
             var check = stack.pop()
             if(!l.contains(check)) {
@@ -56,7 +56,7 @@ fun main() {
     var graph = Graph(5)
     graph.addEdge(0, 3)
     graph.addEdge(0, 5)
-    graph.addEdge(2, 7)
+    graph.addEdge(2, 4)
     graph.printGraph()
     graph.depthFirst()
 }

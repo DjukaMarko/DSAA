@@ -17,5 +17,6 @@ fun main() {
     val stack = Stack<Int>()
     stack.push(5)
     stack.push(10)
+    println(stack.isEmpty())
 
 }
