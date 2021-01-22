@@ -1,11 +1,11 @@
-open class Stack {
+open class Stack<T> {
     private var top: Int = -1
-    private val list = mutableListOf<Any>()
+    private val list = mutableListOf<T>()
 
 
     open fun isEmpty(): Boolean = top == -1
 
-    open fun push(value: Any) {
+    open fun push(value: T) {
         list.add(value)
         top++
     }
@@ -14,7 +14,7 @@ open class Stack {
 }
 
 fun main() {
-    val stack = Stack()
+    val stack = Stack<Int>()
     stack.push(5)
     stack.push(10)
 

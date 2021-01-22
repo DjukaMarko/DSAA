@@ -20,7 +20,7 @@ class HashMap(var size: Int) {
         return toAscii
     }
 
-    fun add(key: String, value: Int?): Int {
+    fun add(key: String, value: Int): Int {
         var ll: LinkedList? = arr[hashFunction(key) % arr.size]
         ll?.addAtHead(key, value)
         return hashFunction(key) % arr.size

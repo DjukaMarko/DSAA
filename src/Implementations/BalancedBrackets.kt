@@ -3,9 +3,9 @@ package Implementations
 import Stack
 import kotlin.properties.Delegates
 
-class BalancedBrackets: Stack() {
+class BalancedBrackets: Stack<Any>() {
     private val dict: Map<Char, Char> = mapOf('(' to ')', '{' to '}', '[' to ']')
-    private var stack = Stack()
+    private var stack = Stack<Char>()
 
     fun isBalanced(value: String): Boolean {
         var check by Delegates.notNull<Boolean>()

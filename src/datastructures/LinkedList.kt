@@ -3,10 +3,11 @@
 
 /* This class represents a node which has 3 properties. The value itself, a pointer to the next and to the previous node.
 *  @params element which represents a value for our node */
-class Node(element: Int?) {
-    var value: Int? = element
+class Node(element: Int) {
+    var value: Int = element
     var next: Node? = null
     var previous: Node? = null
+    var index: Int? = null
     var key: String? = null /* This property is used for HASHMAP and you do not need to declare values on it everytime you create new nodes */
 }
 
@@ -14,9 +15,10 @@ class Node(element: Int?) {
 class LinkedList {
     // Head Node
     private var head: Node? = null
-    private var size: Int = 0
+    var size: Int = 0
 
     // Size of the linked list
+    @JvmName("getSize1")
     fun getSize(): Int = size
 
     // Find the last node in the list
@@ -35,7 +37,7 @@ class LinkedList {
         }
     }
 
-    fun addAtHead(key: String, value: Int?) {
+    fun addAtHead(key: String, value: Int) {
         val node = Node(value)
         node.key = key
         node.next = head
@@ -49,7 +51,7 @@ class LinkedList {
 
     /* Method for adding nodes to the linked list
     *  @params element; for values which are passed to the Node class */
-    fun addNode(element: Int?) {
+    fun addNode(element: Int) {
         val node = findLast()
         val newNode = Node(element)
 
@@ -57,12 +59,28 @@ class LinkedList {
         *  otherwise add it to the end of the list */
         if (head == null) {
             head = newNode
+            head?.index = 0
 
         } else {
             node?.next = newNode
             newNode.previous = node
+            newNode.index = node?.index?.plus(1)
         }
         size++
+    }
+
+    fun get(index: Int): Int {
+        var node: Node? = head
+        var retValue: Int
+        if(index == 0) {
+            retValue = head!!.value
+        } else {
+            while (node?.index != index && node?.next != null) {
+                node = node.next
+            }
+            retValue = node!!.value
+        }
+        return retValue
     }
 
     fun traverseList(){
@@ -92,6 +110,15 @@ class LinkedList {
             print(lNode?.value)
         }
 
+    }
+    fun iterateList(): MutableList<Int> {
+        var node: Node? = head
+        var arr: MutableList<Int> = mutableListOf()
+        while(node?.next != null) {
+            arr.add(node.value)
+            node = node.next
+        }
+        return arr
     }
 
     fun traverseListPrint() {
