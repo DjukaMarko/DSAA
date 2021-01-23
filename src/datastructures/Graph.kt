@@ -3,7 +3,7 @@ package datastructures
 import Stack
 
 class Graph(size: Int) {
-    private var arr: Array<LinkedList<Int>?> = arrayOfNulls(size)
+    private var arr: Array<LinkedList?> = arrayOfNulls(size)
     init {
         for(i in 0 until size) {
             arr[i] = LinkedList()
