@@ -3,18 +3,18 @@ package datastructures
 
 /* This class represents a node which has 3 properties. The value itself, a pointer to the next and to the previous node.
 *  @params element which represents a value for our node */
-class Node(element: Int) {
-    var value: Int = element
-    var next: Node? = null
-    var previous: Node? = null
+open class Node<T>(element: T) {
+    var value: T = element
+    var next: Node<T>? = null
+    var previous: Node<T>? = null
     var index: Int? = null
     var key: String? = null /* This property is used for HASHMAP and you do not need to declare values on it everytime you create new nodes */
 }
 
 
-class LinkedList {
+open class LinkedList<T> {
     // Head datastructures.Node
-    private var head: Node? = null
+    var head: Node<T>? = null
     var size: Int = 0
 
     // Size of the linked list
@@ -22,7 +22,7 @@ class LinkedList {
     fun getSize(): Int = size
 
     // Find the last node in the list
-    private fun findLast(): Node? {
+    open fun findLast(): Node<T>? {
         var node = head
 
         // If the head is not null traverse the list and find the last node otherwise return null
@@ -37,21 +37,12 @@ class LinkedList {
         }
     }
 
-    fun addAtHead(key: String, value: Int) {
-        val node = Node(value)
-        node.key = key
-        node.next = head
-        head?.previous = node
-        head = node
-
-    }
-
-    fun getHead(): Node? = head
+    open fun getHead(): Node<T>? = head
 
 
     /* Method for adding nodes to the linked list
     *  @params element; for values which are passed to the datastructures.Node class */
-    fun addNode(element: Int) {
+    open fun addNode(element: T) {
         val node = findLast()
         val newNode = Node(element)
 
@@ -69,9 +60,9 @@ class LinkedList {
         size++
     }
 
-    fun get(index: Int): Int {
-        var node: Node? = head
-        val retValue: Int
+    open fun get(index: Int): T {
+        var node: Node<T>? = head
+        val retValue: T
         if(index == 0) {
             retValue = head!!.value
         } else {
@@ -83,7 +74,7 @@ class LinkedList {
         return retValue
     }
 
-    fun traverseList(){
+    open fun traverseList(){
         var fNode = head
         var lNode = findLast()
 
@@ -111,9 +102,9 @@ class LinkedList {
         }
 
     }
-    fun iterateList(): MutableList<Int> {
-        var node: Node? = head
-        val arr: MutableList<Int> = mutableListOf()
+    open fun iterateList(): MutableList<T> {
+        var node: Node<T>? = head
+        val arr: MutableList<T> = mutableListOf()
         while(node?.value != null) {
             arr.add(node.value)
             node = node.next
@@ -121,7 +112,7 @@ class LinkedList {
         return arr
     }
 
-    fun traverseListPrint() {
+    open fun traverseListPrint() {
         var fNode = head
 
         if (fNode?.next == null) {
@@ -138,7 +129,7 @@ class LinkedList {
     }
 
     /* For the given value traverse through the list and find the node with that value */
-    fun removeNode(value: Int?) {
+    open fun removeNode(value: T?) {
         var headNode = head
         var prev = head
         var next = headNode
@@ -166,7 +157,7 @@ class LinkedList {
 }
 
 fun main() {
-    val ll = LinkedList()
+    val ll = LinkedList<Int>()
 
     for (i in 1..30) {
         ll.addNode(i)
