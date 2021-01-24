@@ -51,8 +51,9 @@ class HashMap<K: Any, V: Any>(size: Int) {
 
 }
 
+
 fun main() {
-    val ll = HashMap<Int, String>(10) //string is value. Key is a String by default
+    val ll = HashMap<Int, String>(10)
     ll.add(5, "f")
     ll.add(6, "g")
     println(ll.get(5))
